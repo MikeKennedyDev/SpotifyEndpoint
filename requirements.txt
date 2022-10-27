@@ -1,2 +1,2 @@
 Flask==2.0.2
-extra-index-url=https://pkgs.dev.azure.com/MikeKennedyDev/_packaging/MLibSpotify/pypi/simple/
+MLibSpotify==1.0.7.2

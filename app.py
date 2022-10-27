@@ -34,6 +34,7 @@ def GetPlaylistById(playlist_id):
 
 @app.route('/testioli')
 def test():
+    print('In Testioli')
     return jsonify("Hello testioli")
 
 

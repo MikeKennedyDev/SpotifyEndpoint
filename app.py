@@ -11,14 +11,9 @@ __authorization = AuthorizationValues(client_id='bf7bb8ab99894704bed9dfadf4535ef
 __playlist_cache = []
 
 
-@app.route('/')
-def index():
-    print('Request for index page received')
-    return render_template('index.html')
-
-
 @app.get("/songs/<playlist_id>")
 def get_all_songs(playlist_id):
+    print(f'Looking for songs in playlist {playlist_id}')
     playlist = GetPlaylistById(playlist_id)
     return jsonify(playlist.GetAllTracks())
 
@@ -26,10 +21,12 @@ def get_all_songs(playlist_id):
 def GetPlaylistById(playlist_id):
     # Using cached playlist
     if playlist_id in [playlist.PlaylistId for playlist in __playlist_cache]:
+        print('Playlist found in playlist cache.')
         return next(p for p in __playlist_cache if p.PlaylistId == playlist_id)
 
     # Creating new playlist model for playlist model
     else:
+        print('Playlist not found in cache, retrieving from Spotify.')
         playlist = SpotifyPlaylist(authorization_values=__authorization, playlist_id=playlist_id)
         __playlist_cache.append(playlist)
         return playlist

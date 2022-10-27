@@ -38,8 +38,11 @@ def test():
     return jsonify("Hello testioli")
 
 
-@app.get('/gettest')
+@app.get('/spotifyTest')
 def gettest():
+    print('Creating playlist')
+    playlist = SpotifyPlaylist(authorization_values=__authorization, playlist_id='2UmDYQxgIDaKikeG53Ffd5')
+    print('Playlist created')
     return jsonify("Get this")
 
 

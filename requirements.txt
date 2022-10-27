@@ -1,3 +1,2 @@
 Flask==2.2.2
---extra-index-url=https://MLibSpotify:m6f6ibcd756p4ta7omvthk4mi76uevmrs44ur2nogcuuscbynzba@pkgs.dev.azure.com/MikeKennedyDev/Libraries/_packaging/MLibSpotify/pypi/simple/
-MLibSpotify==1.0.9.0
+MLibSpotify==1.0.9.0 --extra-index-url=https://MLibSpotify:m6f6ibcd756p4ta7omvthk4mi76uevmrs44ur2nogcuuscbynzba@pkgs.dev.azure.com/MikeKennedyDev/Libraries/_packaging/MLibSpotify/pypi/simple/

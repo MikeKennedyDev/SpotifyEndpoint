@@ -46,5 +46,17 @@ def spotifyTest():
     return jsonify("Get this")
 
 
+@app.route('/getScope')
+def getScope():
+    return jsonify(scope)
+
+
+@app.route('/getAuth')
+def getAuth():
+    print(__authorization)
+    print(str(__authorization))
+    return jsonify(str(__authorization))
+
+
 if __name__ == '__main__':
     app.run()

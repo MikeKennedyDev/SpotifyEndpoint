@@ -7,7 +7,7 @@ scope = 'playlist-read-collaborative playlist-modify-public'
 __authorization = AuthorizationValues(client_id='bf7bb8ab99894704bed9dfadf4535ef2',
                                       client_secret='44cb0a59f67b4a3dbfdf0ac7c8f4c57a',
                                       scope=scope,
-                                      redirect_uri='https://example.com/callback/')
+                                      redirect_uri='http://localhost:8888')
 
 __playlist_cache = []
 

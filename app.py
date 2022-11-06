@@ -8,7 +8,7 @@ app = Flask(__name__)
 __playlist_cache = []
 
 
-@app.get("/songs/<playlist_id>")
+@app.route("/songs/<playlist_id>", methods=['GET'])
 def get_all_songs(playlist_id):
     print(f'Looking for songs in playlist {playlist_id}')
     playlist = GetPlaylistById(playlist_id)
@@ -25,12 +25,14 @@ def GetPlaylistById(playlist_id):
     else:
         print('Playlist not found in cache, retrieving from Spotify.')
         playlist = SpotifyPlaylist(playlist_id=playlist_id,
-                                   access_token="BQAvGVCxcM1mDPuoO0dVnFby1j8cKkLPME8ieerhGNMVKqVjPhCsGNMmAlu21xMczLj92QBjZI7GC-YeAKHFE4RqM68QgCrtpF_jl1JsvY8qhpQvw-zbDjnu-NnxhtcKRE_67EwsjeZHdTCAP4gbQf76MmKa5HV_KqqqbKb6NN5WC85u97Y2crWZOfqzKqZfxVaHQmiV01o1ftFaSDs")
+                                   client_id="bf7bb8ab99894704bed9dfadf4535ef2",
+                                   client_secret="44cb0a59f67b4a3dbfdf0ac7c8f4c57a",
+                                   refresh_token="AQDwmGYySXf5n3zr-BT9MJhDLJmT4l5pG0dFy2WipLw5AP4dYyp2W4FpOpBltB4XeNFHneApKM9DR3WY5mEwN0aGGXwzgfKA6u-fLGLDjRtLia7gtgnIfQYveZf8yFqkpk8")
         __playlist_cache.append(playlist)
         return playlist
 
 
-@app.post("/addTrack/<playlist_id>/<track_id>")
+@app.route("/addTrack/<playlist_id>/<track_id>", methods=['POST'])
 def add_song(playlist_id, track_id):
     print(f'Adding {track_id} to {playlist_id}')
     playlist = GetPlaylistById(playlist_id)

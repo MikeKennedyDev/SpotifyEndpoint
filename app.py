@@ -1,13 +1,9 @@
-from MLibSpotify.SpotifyPlaylist import SpotifyPlaylist, AuthorizationValues
+import os
+
+from MLibSpotify.SpotifyPlaylist import SpotifyPlaylist
 from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
-
-scope = 'playlist-read-collaborative playlist-modify-public'
-__authorization = AuthorizationValues(client_id='bf7bb8ab99894704bed9dfadf4535ef2',
-                                      client_secret='44cb0a59f67b4a3dbfdf0ac7c8f4c57a',
-                                      scope=scope,
-                                      redirect_uri='http://localhost:8888/callback/')
 
 __playlist_cache = []
 
@@ -28,7 +24,7 @@ def GetPlaylistById(playlist_id):
     # Creating new playlist model for playlist model
     else:
         print('Playlist not found in cache, retrieving from Spotify.')
-        playlist = SpotifyPlaylist(authorization_values=__authorization, playlist_id=playlist_id)
+        playlist = SpotifyPlaylist(playlist_id=playlist_id, access_token="BQAvGVCxcM1mDPuoO0dVnFby1j8cKkLPME8ieerhGNMVKqVjPhCsGNMmAlu21xMczLj92QBjZI7GC-YeAKHFE4RqM68QgCrtpF_jl1JsvY8qhpQvw-zbDjnu-NnxhtcKRE_67EwsjeZHdTCAP4gbQf76MmKa5HV_KqqqbKb6NN5WC85u97Y2crWZOfqzKqZfxVaHQmiV01o1ftFaSDs")
         __playlist_cache.append(playlist)
         return playlist
 
@@ -42,21 +38,9 @@ def test():
 @app.route('/spotifyTest')
 def spotifyTest():
     print('Creating playlist')
-    playlist = SpotifyPlaylist(authorization_values=__authorization, playlist_id='2UmDYQxgIDaKikeG53Ffd5')
+    playlist = SpotifyPlaylist(playlist_id='2UmDYQxgIDaKikeG53Ffd5')
     print('Playlist created')
     return jsonify("Get this")
-
-
-@app.route('/getScope')
-def getScope():
-    return jsonify(scope)
-
-
-@app.route('/getAuth')
-def getAuth():
-    print(__authorization)
-    print(str(__authorization))
-    return jsonify(str(__authorization))
 
 
 if __name__ == '__main__':

@@ -24,15 +24,18 @@ def GetPlaylistById(playlist_id):
     # Creating new playlist model for playlist model
     else:
         print('Playlist not found in cache, retrieving from Spotify.')
-        playlist = SpotifyPlaylist(playlist_id=playlist_id, access_token="BQAvGVCxcM1mDPuoO0dVnFby1j8cKkLPME8ieerhGNMVKqVjPhCsGNMmAlu21xMczLj92QBjZI7GC-YeAKHFE4RqM68QgCrtpF_jl1JsvY8qhpQvw-zbDjnu-NnxhtcKRE_67EwsjeZHdTCAP4gbQf76MmKa5HV_KqqqbKb6NN5WC85u97Y2crWZOfqzKqZfxVaHQmiV01o1ftFaSDs")
+        playlist = SpotifyPlaylist(playlist_id=playlist_id,
+                                   access_token="BQAvGVCxcM1mDPuoO0dVnFby1j8cKkLPME8ieerhGNMVKqVjPhCsGNMmAlu21xMczLj92QBjZI7GC-YeAKHFE4RqM68QgCrtpF_jl1JsvY8qhpQvw-zbDjnu-NnxhtcKRE_67EwsjeZHdTCAP4gbQf76MmKa5HV_KqqqbKb6NN5WC85u97Y2crWZOfqzKqZfxVaHQmiV01o1ftFaSDs")
         __playlist_cache.append(playlist)
         return playlist
 
 
-@app.route('/testioli')
-def test():
-    print('In Testioli')
-    return jsonify("Hello testioli")
+@app.post("/addTrack/<playlist_id>/<track_id>")
+def add_song(playlist_id, track_id):
+    print(f'Adding {track_id} to {playlist_id}')
+    playlist = GetPlaylistById(playlist_id)
+    playlist.AddTracks([track_id])
+    return f'Added track: {track_id} to playlist: {playlist_id}'
 
 
 if __name__ == '__main__':

@@ -38,7 +38,7 @@ def test():
 @app.route('/spotifyTest')
 def spotifyTest():
     print('Creating playlist')
-    playlist = SpotifyPlaylist(playlist_id='2UmDYQxgIDaKikeG53Ffd5')
+    playlist = SpotifyPlaylist(playlist_id='2UmDYQxgIDaKikeG53Ffd5', access_token="BQAvGVCxcM1mDPuoO0dVnFby1j8cKkLPME8ieerhGNMVKqVjPhCsGNMmAlu21xMczLj92QBjZI7GC-YeAKHFE4RqM68QgCrtpF_jl1JsvY8qhpQvw-zbDjnu-NnxhtcKRE_67EwsjeZHdTCAP4gbQf76MmKa5HV_KqqqbKb6NN5WC85u97Y2crWZOfqzKqZfxVaHQmiV01o1ftFaSDs")
     print('Playlist created')
     return jsonify("Get this")
 

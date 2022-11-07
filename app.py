@@ -40,6 +40,12 @@ def add_song(playlist_id, track_id):
     return f'Added track: {track_id} to playlist: {playlist_id}'
 
 
+@app.route('/GetTestVar', methods=['GET'])
+def testGet():
+    test_val = os.environ.get("TestVal")
+    print(test_val)
+
+
 if __name__ == '__main__':
     print('running main')
     app.run()

@@ -29,7 +29,7 @@ def GetPlaylistById(playlist_id):
                                    client_id=os.environ['CLIENT_ID'],
                                    client_secret=os.environ['CLIENT_SECRET'],
                                    refresh_token=os.environ['REFRESH_TOKEN'])
-        __playlist_cache.append(playlist)
+        # __playlist_cache.append(playlist)
         return playlist
 
 
@@ -39,6 +39,13 @@ def add_song(playlist_id, track_id):
     playlist = GetPlaylistById(playlist_id)
     playlist.AddTracks([track_id])
     return f'Added track: {track_id} to playlist: {playlist_id}'
+
+
+@app.route('/GetTestVar', methods=['GET'])
+def testGet():
+    print(f'environ: {os.environ}')
+    print(f"environ['TestVal']: {os.environ['TestVal']}")
+    return "ayy mayb this time"
 
 
 if __name__ == '__main__':

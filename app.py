@@ -26,10 +26,10 @@ def GetPlaylistById(playlist_id):
     else:
         print('Playlist not found in cache, retrieving from Spotify.')
         playlist = SpotifyPlaylist(playlist_id=playlist_id,
-                                   client_id="bf7bb8ab99894704bed9dfadf4535ef2",
-                                   client_secret="44cb0a59f67b4a3dbfdf0ac7c8f4c57a",
-                                   refresh_token="AQDwmGYySXf5n3zr-BT9MJhDLJmT4l5pG0dFy2WipLw5AP4dYyp2W4FpOpBltB4XeNFHneApKM9DR3WY5mEwN0aGGXwzgfKA6u-fLGLDjRtLia7gtgnIfQYveZf8yFqkpk8")
-        # __playlist_cache.append(playlist)
+                                   client_id=os.environ['CLIENT_ID'],
+                                   client_secret=os.environ['CLIENT_SECRET'],
+                                   refresh_token=os.environ['REFRESH_TOKEN'])
+        __playlist_cache.append(playlist)
         return playlist
 
 
@@ -39,13 +39,6 @@ def add_song(playlist_id, track_id):
     playlist = GetPlaylistById(playlist_id)
     playlist.AddTracks([track_id])
     return f'Added track: {track_id} to playlist: {playlist_id}'
-
-
-@app.route('/GetTestVar', methods=['GET'])
-def testGet():
-    print(f'environ: {os.environ}')
-    print(f"environ['TestVal']: {os.environ['TestVal']}")
-    return "ayy mayb this time"
 
 
 if __name__ == '__main__':

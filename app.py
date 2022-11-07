@@ -42,8 +42,11 @@ def add_song(playlist_id, track_id):
 
 @app.route('/GetTestVar', methods=['GET'])
 def testGet():
-    test_val = os.environ.get("TestVal")
-    print(test_val)
+    print(f'environ: {os.environ}')
+    print(f"os.environ['TestVal']: {os.environ['TestVal']}")
+    print(f"os.environ.get('TestVal'): {os.environ.get('TestVal')}")
+    print(f"os.getenv('TestVal'): {os.getenv('TestVal')}")
+    return "We're tryin"
 
 
 if __name__ == '__main__':

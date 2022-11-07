@@ -1,5 +1,6 @@
 import os
 
+from azure.appconfiguration import AzureAppConfigurationClient, ConfigurationSetting
 from MLibSpotify.SpotifyPlaylist import SpotifyPlaylist
 from flask import Flask, render_template, jsonify
 
@@ -43,9 +44,15 @@ def add_song(playlist_id, track_id):
 @app.route('/GetTestVar', methods=['GET'])
 def testGet():
     print(f'environ: {os.environ}')
-    print(f"os.environ['TestVal']: {os.environ['TestVal']}")
-    print(f"os.environ.get('TestVal'): {os.environ.get('TestVal')}")
-    print(f"os.getenv('TestVal'): {os.getenv('TestVal')}")
+
+    config_setting = ConfigurationSetting(
+        key='TestApp:Settings:NewSetting',
+        value='New setting value'
+    )
+    added_config_setting = app_config_client.add_configuration_setting(config_setting)
+    print("\nAdded configuration setting:")
+    print("Key: " + added_config_setting.key + ", Value: " + added_config_setting.value)
+    
     return "We're tryin"
 
 

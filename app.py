@@ -44,18 +44,9 @@ def add_song(playlist_id, track_id):
 @app.route('/GetTestVar', methods=['GET'])
 def testGet():
     print(f'environ: {os.environ}')
-
-    config_setting = ConfigurationSetting(
-        key='TestApp:Settings:NewSetting',
-        value='New setting value'
-    )
-    added_config_setting = app_config_client.add_configuration_setting(config_setting)
-    print("\nAdded configuration setting:")
-    print("Key: " + added_config_setting.key + ", Value: " + added_config_setting.value)
-
-    return "We're tryin"
+    print(f"environ['TestVal']: {os.environ['TestVal']}")
+    return "ayy mayb this time"
 
 
 if __name__ == '__main__':
-    print('running main')
     app.run()
